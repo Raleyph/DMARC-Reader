@@ -10,6 +10,9 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>dmarcrd</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
+        <AssemblyVersion>1.1</AssemblyVersion>
+        <NeutralLanguage>en</NeutralLanguage>
+        <Version>1.1</Version>
         
     </PropertyGroup>
 

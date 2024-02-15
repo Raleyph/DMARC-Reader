@@ -1,25 +1,28 @@
 ﻿using System.Xml;
+using System.Net;
+using System.Net.Sockets;
 
 namespace DMARC_Reader.Entities;
 
-public class XmlReader
+public class ReportReader
 {
     public XmlDocument Document { get; }
 
-    public XmlReader(string dumpPath)
+    public ReportReader(string dumpPath)
     {
         Document = new XmlDocument();
         Document.Load(dumpPath);
     }
 
-    public List<Dump> Read()
+    public List<Record> Read()
     {
-        List<Dump> dumps = new List<Dump>(); 
+        List<Record> records = new List<Record>(); 
         XmlNodeList rows = Document.GetElementsByTagName("row");
 
         foreach (XmlNode row in rows)
         {
             string ip = "";
+            string hostname;
             int count = 0;
             string disposition = "";
             string dkim = "";
@@ -32,10 +35,8 @@ public class XmlReader
                 
                 if (nodeName == "source_ip")
                     ip = nodeText;
-                
                 else if (nodeName == "count")
                     count = Convert.ToInt32(nodeText);
-                
                 else if (nodeName == "policy_evaluated")
                 {
                     foreach (XmlNode evaluate in rowNode.ChildNodes)
@@ -45,19 +46,26 @@ public class XmlReader
                         
                         if (evaluateName == "disposition")
                             disposition = evaluateText;
-                        
                         else if (evaluateName == "dkim")
                             dkim = evaluateText;
-                        
                         else if (evaluateName == "spf")
                             spf = evaluateText;
                     }
                 }
             }
+
+            try
+            {
+                hostname = Dns.GetHostEntry(ip).HostName;
+            }
+            catch (SocketException)
+            {
+                hostname = "none";
+            }
             
-            dumps.Add(new Dump(ip, count, disposition, dkim, spf));
+            records.Add(new Record(ip, hostname, count, disposition, dkim, spf));
         }
 
-        return dumps;
+        return records;
     }
 }
