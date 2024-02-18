@@ -9,8 +9,8 @@ A CLI tool that allows you to display mail server reports (DMARC) in the form of
 
 When you enter the <code>dmarcrd</code> command, the program will display a welcome window:
 
-![Start screen](/assets/start_screen.png)
+![Start screen](https://raw.githubusercontent.com/Raleyph/DMARC-Reader/main/assets/start_screen.png)
 
 Provide a command like <code>dmarcrd \<path\></code> to read the file:
 
-![Start screen](/assets/work_screen.png)
+![Start screen](https://raw.githubusercontent.com/Raleyph/DMARC-Reader/main/assets/work_screen.png)
