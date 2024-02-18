@@ -1,7 +1,7 @@
 # DMARC-Reader
 
-![NuGet](https://img.shields.io/nuget/v/DMARCReader.Cli?style=flat-square&logo=nuget)
-![License](https://img.shields.io/github/license/Raleyph/DMARC-Reader?style=flat-square)
+[![NuGet](https://img.shields.io/nuget/v/DMARCReader.Cli?style=flat-square&logo=nuget)](https://www.nuget.org/packages/DMARCReader.Cli/)
+[![License](https://img.shields.io/github/license/Raleyph/DMARC-Reader?style=flat-square)](https://opensource.org/license/mit/)
 
 A CLI tool that allows you to display mail server reports (DMARC) in the form of a table.
 
